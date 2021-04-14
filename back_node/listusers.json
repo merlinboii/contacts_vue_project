@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "name": "bob",
+      "password": "1111",
+      "occupation": "student",
+      "id": 1
+    },
+    {
+      "name": "brian",
+      "password": "2222",
+      "occupation": "seller",
+      "id": 2
+    },
+    {
+      "name": "susan",
+      "password": "3333",
+      "occupation": "driver",
+      "id": 3
+    },
+    {
+      "name": "john",
+      "password": "4444",
+      "occupation": "pilot",
+      "id": 4
+    },
+    {
+      "name": "filmptz",
+      "password": "1999",
+      "occupation": "student",
+      "id": 5
+    }
+  ]
+}
