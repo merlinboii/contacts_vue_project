@@ -15,7 +15,7 @@ exports.createAContact = function(req,res){
     newContact.save(function(err, contact){
         if(err) throw err
         const response = {
-            message: "Create a contact successfully",
+            message: "Create a contact successfully"
         }
         res.json(response)
     })
@@ -43,12 +43,10 @@ exports.updateAContactbyFirstname = function(req,res){
     console.log(req.params.userID)
     var newContact = {}
     newContact = req.body
-    console.log(newContact)
     Contact.findOneAndUpdate({firstname: req.params.contact_fname}, newContact, {new: true}, function(err, contact){
         if(err) throw err
         const response = {
-            message: "Update a contact by first name: "+ req.params.contact_fname +" successfully",
-            id: contact._id
+            message: "Update a contact successfully",
         }
         res.json(response)
     })
