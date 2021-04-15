@@ -21,30 +21,34 @@
             <thead>
                 <tr>
                 <th class="center">First Name</th>
+                <th class="center">Middle Name</th>
                 <th class="center">Last Name</th>
+                <th class="center">Mobile</th>
                 <th class="center">Email</th>
                 <th class="center">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="user_alias in filterUsers" v-bind:key="user_alias.id">
+                <tr v-for="user_alias in filterContacts" v-bind:key="user_alias.firstname">
                 <!-- <tr v-for="user_alias in Users" v-bind:key="user_alias.id"> -->
-                    <td class="text-left">{{ user_alias.firstName }}</td>
-                    <td class="text-left">{{ user_alias.lastName }}</td>
+                    <td class="text-left">{{ user_alias.firstname }}</td>
+                    <td class="text-left">{{ user_alias.middlename }}</td>
+                    <td class="text-left">{{ user_alias.lastname }}</td>
+                    <td class="text-left">{{ user_alias.mobile }}</td>
                     <td class="text-left">{{ user_alias.email }}</td>
                     <td class="text-left">
                         <!-- <router-link :to="{ path: 'userupdate', name: 'UpdateUser', params:{userId: user_alias._id} }">
                           <button class="btn btn-xs btn-warning">Edit</button>&nbsp;
                         </router-link>   --> 
                          <router-link to="/">
-                          <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm" @click="DELETE(user_alias._id)"><span class="glyphicon glyphicon-trash">Delete</span></button>
+                          <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm" @click="DELETE(user_alias.firstname)"><span class="glyphicon glyphicon-trash">Delete</span></button>
                         </router-link>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <router-link to="/adduser">
-            <button class="btn btn-large btn-block btn-success full-width">Add User</button>
+        <router-link to="/addcontact">
+            <button class="btn btn-large btn-block btn-success full-width">Add Contact</button>
         </router-link>
         <br>
     <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -60,8 +64,8 @@
             Are you sure you want to delete this item? </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <router-link to="/users">
-                 <button type="button" class="btn btn-danger" @click="delUser(uid)">Delete</button>
+              <router-link to="/contacts">
+                 <button type="button" class="btn btn-danger" @click="delUser(contact_fname)">Delete</button>
               </router-link>
           </div>
         </div>
@@ -75,40 +79,41 @@ import axios from 'axios'
 import $ from 'jquery'
 
 export default {
-  name: 'Users',
+  name: 'Contacts',
   data() {
     return {
-        Users:[],
+        Contacts:[],
         search:'', // ผูกกับ  v-model="search"
-        uid:''
+        uid:'',
+        fname:''
     }
   },
   mounted() {
-    axios.get('http://localhost:5000/users')
+    axios.get('http://localhost:5000/contacts/getmany')
          .then((response)=>{
              console.log(response.data)
-             this.Users = response.data // .data is default prop of response
+             this.Contacts = response.data // .data is default prop of response
          })
          .catch((error)=>{
              console.log(error) // should have table name of msg Error
          })
   },
   computed : {
-      filterUsers: function(){
-          return this.Users.filter((user)=>{
-              return user.firstName.match(this.search)
+      filterContacts: function(){
+          return this.Contacts.filter((contact)=>{
+              return contact.firstname.match(this.search)
           })
       }
   },
   methods : {
-      DELETE(id){
-          this.uid = id
+      DELETE(firstname){
+          this.fname = firstname
          
       },
-      delUser(UserId){
-           axios.delete('http://localhost:5000/users/'+UserId)
+      delUser(contact_fname){
+           axios.delete('http://localhost:5000/contacts/delete/'+contact_fname)
             .then(()=>{
-                console.log('Delete userId:'+UserId)
+                console.log('Delete firstname: '+contact_fname)
              })
             .catch((error)=>{
                 console.log(error) // should have table name of msg Error

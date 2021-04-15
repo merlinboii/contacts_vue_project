@@ -2,21 +2,21 @@
 import { createRouter, createWebHistory } from 'vue-router' 
 // import vue-router ,createWebHistory are log that saved data of user view in web
 
-import Users from "../views/Users.vue"
+import Contacts from "../views/Contacts.vue"
 import About from "../views/About.vue"
-import AddUser from "../views/AddUser.vue"
+import AddContact from "../views/AddContact.vue"
 
 const routerHistory = createWebHistory()
 
 const routes = [
     {
         path:'/',
-        redirect:'/users'
+        redirect:'/contacts'
     },
     {
-        path:'/users',
-        name: Users,
-        component: Users
+        path:'/contacts',
+        name: Contacts,
+        component: Contacts
     },
     {
         path:'/about',
@@ -24,9 +24,9 @@ const routes = [
         component: About
     },
     {
-        path:'/adduser',
-        name: AddUser,
-        component: AddUser
+        path:'/addcontact',
+        name: AddContact,
+        component: AddContact
     }
 ]
 
