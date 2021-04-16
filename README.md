@@ -1,2 +1,2 @@
-# contacts_vue_project
+# Contacts project
 This project is still in development.
