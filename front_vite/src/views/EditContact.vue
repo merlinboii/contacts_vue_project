@@ -89,9 +89,6 @@ export default {
                 console.log(error) // should have table name of msg Error
             })
             window.location.reload() // reload data in table
-      },
-      reloadData(){
-        return this.Contact
       }
   },
   mounted() {
