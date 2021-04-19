@@ -21,8 +21,8 @@ exports.createAContact = function(req,res){
     })
 }
 
-exports.readAContactby_id = function(req,res){
-    Contact.findOne({_id: req.params._id},function(err, contact){
+exports.readAContactbyId = function(req,res){
+    Contact.findOneById(req.paramsid,function(err, contact){
         if (err) console.error(err)
         res.json(contact)
       })
