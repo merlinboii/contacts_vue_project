@@ -15,4 +15,4 @@ var ContactSchema = new Schema({
   image : {type : String , default: ''} 
 })
 
-module.exports= mongoose.model('Contact', ContactSchema ,'Contacts') //(<collection_name>,<schema>)
+module.exports= mongoose.model('Contacts', ContactSchema ,'Contacts') //(<collection_name>,<schema>)

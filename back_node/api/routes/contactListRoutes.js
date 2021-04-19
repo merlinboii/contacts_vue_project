@@ -7,10 +7,10 @@ module.exports = function(app){
     app.route('/contacts/add')
     .post(contactList.createAContact)
 
-    app.route('/contacts/get/:contact_fname')
-    .get(contactList.readAContactbyFirstname)
-    app.route('/contacts/update/:contact_fname')
-    .put(contactList.updateAContactbyFirstname)
+    app.route('/contacts/get/:_id')
+    .get(contactList.readAContactby_id)
+    app.route('/contacts/update/:id')
+    .put(contactList.updateAContactbyId)
     app.route('/contacts/delete/:contact_fname')
     .delete(contactList.deleteAContactbyFirstname)
 

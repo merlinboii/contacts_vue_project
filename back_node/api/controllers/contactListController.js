@@ -1,7 +1,7 @@
 'use strict'
 
 var mongoose = require('mongoose')
-Contact = mongoose.model('Contact')
+Contact = mongoose.model('Contacts')
 
 exports.listAllContacts = function(req,res){
     Contact.find({},null,null,function(err,contact){
@@ -21,8 +21,8 @@ exports.createAContact = function(req,res){
     })
 }
 
-exports.readAContactbyFirstname = function(req,res){
-    Contact.findOne({firstname: req.params.contact_fname},function(err, contact){
+exports.readAContactby_id = function(req,res){
+    Contact.findOne({_id: req.params._id},function(err, contact){
         if (err) console.error(err)
         res.json(contact)
       })
@@ -33,17 +33,15 @@ exports.deleteAContactbyFirstname = function(req,res){
         if(err) throw err
         const response = {
             message: "Delete a contact by first name: "+ req.params.contact_fname +" successfully",
-            id: contact._id
         }
         res.json(response)
     })
 }
 
-exports.updateAContactbyFirstname = function(req,res){
-    console.log(req.params.userID)
+exports.updateAContactbyId = function(req,res){
     var newContact = {}
     newContact = req.body
-    Contact.findOneAndUpdate({firstname: req.params.contact_fname}, newContact, {new: true}, function(err, contact){
+    Contact.findByIdAndUpdate(req.params.id, newContact, {new: true}, function(err, contact){
         if(err) throw err
         const response = {
             message: "Update a contact successfully",
