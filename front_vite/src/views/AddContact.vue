@@ -80,7 +80,7 @@ export default {
           axios.post('http://localhost:5000/contacts/add/',newContact)
             .then((response)=>{
                 console.log(response.data)
-                this.Users = response.data // .data is default prop of response
+               // this.Contacts = response.data // .data is default prop of response
              })
             .catch((error)=>{
                 console.log(error) // should have table name of msg Error

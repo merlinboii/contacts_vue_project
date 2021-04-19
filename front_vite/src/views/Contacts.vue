@@ -29,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="user_alias in filterContacts" v-bind:key="user_alias.firstname">
+                <tr v-for="user_alias in filterContacts" v-bind:key="user_alias.firstname || user_alias.lastname" >
                 <!-- <tr v-for="user_alias in Users" v-bind:key="user_alias.id"> -->
                     <td class="text-left">{{ user_alias.firstname }}</td>
                     <td class="text-left">{{ user_alias.middlename }}</td>
@@ -37,9 +37,9 @@
                     <td class="text-left">{{ user_alias.mobile }}</td>
                     <td class="text-left">{{ user_alias.email }}</td>
                     <td class="text-left">
-                        <!-- <router-link :to="{ path: 'userupdate', name: 'UpdateUser', params:{userId: user_alias._id} }">
+                        <router-link :to="{ name: 'EditContact' , params:{userId: user_alias._id} }">
                           <button class="btn btn-xs btn-warning">Edit</button>&nbsp;
-                        </router-link>   --> 
+                        </router-link>   
                          <router-link to="/">
                           <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm" @click="DELETE(user_alias.firstname)"><span class="glyphicon glyphicon-trash">Delete</span></button>
                         </router-link>
@@ -65,7 +65,7 @@
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <router-link to="/contacts">
-                 <button type="button" class="btn btn-danger" @click="delUser(contact_fname)">Delete</button>
+                 <button type="button" class="btn btn-danger" @click="delContact(fname)">Delete</button>
               </router-link>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default {
   computed : {
       filterContacts: function(){
           return this.Contacts.filter((contact)=>{
-              return contact.firstname.match(this.search)
+              return contact.firstname.match(this.search) || contact.lastname.match(this.search)
           })
       }
   },
@@ -110,7 +110,7 @@ export default {
           this.fname = firstname
          
       },
-      delUser(contact_fname){
+      delContact(contact_fname){
            axios.delete('http://localhost:5000/contacts/delete/'+contact_fname)
             .then(()=>{
                 console.log('Delete firstname: '+contact_fname)
