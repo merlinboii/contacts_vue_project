@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose')
 Contact = mongoose.model('Contacts')
+Account = mongoose.model('Accounts')
 
 exports.listAllContacts = function(req,res){
     Contact.find({},null,null,function(err,contact){
@@ -22,7 +23,7 @@ exports.createAContact = function(req,res){
 }
 
 exports.readAContactbyId = function(req,res){
-    Contact.findOneById(req.paramsid,function(err, contact){
+    Contact.findById(req.params.id,function(err, contact){
         if (err) console.error(err)
         res.json(contact)
       })
@@ -48,4 +49,19 @@ exports.updateAContactbyId = function(req,res){
         }
         res.json(response)
     })
+}
+
+//=========== Accounts ===========//
+exports.listAllAccounts = function(req,res){
+    Account.find({},null,null,function(err,account){
+        if(err) throw err 
+        res.json(account)
+    })
+}
+
+exports.readAAccountbyUsername = function(req,res){
+    Account.findOne({Username:req.params.Username},function(err, account){
+        if (err) console.error(err)
+        res.json(account)
+      })
 }

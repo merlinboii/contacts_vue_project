@@ -15,4 +15,10 @@ var ContactSchema = new Schema({
   image : {type : String , default: ''} 
 })
 
-module.exports= mongoose.model('Contacts', ContactSchema ,'Contacts') //(<collection_name>,<schema>)
+var AccountSchema = new Schema({
+  Username:{type : String , required : 'Please Enter Username'},
+  Password:{type : String , required : 'Please Enter Password'}
+})
+
+module.exports.Contact = mongoose.model('Contacts', ContactSchema ,'Contacts')
+module.exports.Account = mongoose.model('Accounts', AccountSchema ,'Accounts') //(<collection_name>,<schema>)

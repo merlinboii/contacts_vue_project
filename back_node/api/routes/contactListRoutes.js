@@ -1,17 +1,24 @@
 'use strict'
 module.exports = function(app){
-    var contactList = require('../controllers/contactListController')
+    var controller = require('../controllers/contactListController')
 
+    //====== Contacts ======//
     app.route('/contacts/getmany')
-    .get(contactList.listAllContacts)
+    .get(controller.listAllContacts)
     app.route('/contacts/add')
-    .post(contactList.createAContact)
+    .post(controller.createAContact)
 
     app.route('/contacts/get/:id')
-    .get(contactList.readAContactbyId)
+    .get(controller.readAContactbyId)
     app.route('/contacts/update/:id')
-    .put(contactList.updateAContactbyId)
+    .put(controller.updateAContactbyId)
     app.route('/contacts/delete/:contact_fname')
-    .delete(contactList.deleteAContactbyFirstname)
+    .delete(controller.deleteAContactbyFirstname)
 
+    //====== Accounts ======//
+    app.route('/accounts/getmany')
+    .get(controller.listAllAccounts)
+    app.route('/accounts/get/:Username')
+    .get(controller.readAAccountbyUsername)
+    
 }
