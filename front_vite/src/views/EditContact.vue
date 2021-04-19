@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" >
     <form>
       <div class="well">
         <h4>Edit Contact</h4>
@@ -89,7 +89,22 @@ export default {
                 console.log(error) // should have table name of msg Error
             })
             window.location.reload() // reload data in table
+      },
+      reloadData(){
+        return this.Contact
       }
+  },
+  mounted() {
+    this.Contact._id=this.$route.params.userId
+        axios.get('http://localhost:5000/contacts/get/'+this.Contact._id)
+         .then((response)=>{
+             console.log(response.data)
+             this.Contact = response.data // .data is default prop of response
+             return this.Contact
+         })
+         .catch((error)=>{
+             console.log(error) // should have table name of msg Error
+         })
   }
 }
 </script>
