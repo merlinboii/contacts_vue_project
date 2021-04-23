@@ -37,10 +37,10 @@
                     <td class="text-left">{{ user_alias.mobile }}</td>
                     <td class="text-left">{{ user_alias.email }}</td>
                     <td class="text-left">
-                        <router-link :to="{ name: 'EditContact' , params:{userId: user_alias._id} }">
+                        <router-link :to="{ path:'updatecontact', name: 'UpdateContact' , params:{userId: user_alias._id} }">
                           <button class="btn btn-xs btn-warning">Edit</button>&nbsp;
                         </router-link>   
-                         <router-link to="/">
+                         <router-link to="/contacts">
                           <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm" @click="DELETE(user_alias.firstname)"><span class="glyphicon glyphicon-trash">Delete</span></button>
                         </router-link>
                     </td>
@@ -55,13 +55,16 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title" id="exampleModalLabel">Are you sure?</h1>
+            <h1 class="modal-title" id="exampleModalLabel">Delete contact</h1>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            Are you sure you want to delete this item? </div>
+            Are you sure you want to delete this contact 
+            <br>
+            <p >First name : {{ fname }}</p>
+          </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <router-link to="/contacts">

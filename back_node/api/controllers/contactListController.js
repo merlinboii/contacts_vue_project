@@ -60,7 +60,7 @@ exports.listAllAccounts = function(req,res){
 }
 
 exports.readAAccountbyUsername = function(req,res){
-    Account.findOne({Username:req.params.Username},function(err, account){
+    Account.findOne({Username:req.params.Username , Password:req.params.Password},function(err, account){
         if (err) console.error(err)
         res.json(account)
       })

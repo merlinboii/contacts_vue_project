@@ -5,14 +5,21 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Contacts from "../views/Contacts.vue"
 import About from "../views/About.vue"
 import AddContact from "../views/AddContact.vue"
-import EditContact from "../views/EditContact.vue"
+import UpdateContact from "../views/UpdateContact.vue"
+import Login from "../views/Login.vue"
+// import SignUp from "../views/SignUp.vue"
 
 const routerHistory = createWebHistory()
 
 const routes = [
     {
         path:'/',
-        redirect:'/contacts'
+        redirect:'/login'
+    },
+    {
+        path:'/login',
+        name: Login,
+        component: Login
     },
     {
         path:'/contacts',
@@ -30,9 +37,13 @@ const routes = [
         component: AddContact
     },
     {
-        path:'/editcontact/:userId',
-        name: 'EditContact',
-        component: EditContact
+        path:'/updatecontact/:userId',
+        name: 'UpdateContact',
+        component: UpdateContact
+    },
+    {
+        path:'/:catchAll(.*)',
+        redirect:'/login'
     }
 ]
 

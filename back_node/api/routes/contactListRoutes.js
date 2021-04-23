@@ -18,7 +18,7 @@ module.exports = function(app){
     //====== Accounts ======//
     app.route('/accounts/getmany')
     .get(controller.listAllAccounts)
-    app.route('/accounts/get/:Username')
+    app.route('/accounts/get/:Username&:Password')
     .get(controller.readAAccountbyUsername)
     
 }
