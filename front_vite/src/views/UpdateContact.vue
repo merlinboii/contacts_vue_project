@@ -89,7 +89,7 @@ export default {
             email: this.Contact.email,
             image: this.Contact.image
           }
-           axios.put('http://localhost:5000/contacts/update/'+ this.Contact._id,newContact)
+           axios.put('https://egco427-vue-hw.herokuapp.com/contacts/update/'+ this.Contact._id,newContact)
             .then(()=>{
                 console.log('Update Contact ')
              })
@@ -128,7 +128,7 @@ export default {
   },
   mounted() {
     this.Contact._id=this.$route.params.userId
-        axios.get('http://localhost:5000/contacts/get/'+this.Contact._id)
+        axios.get('https://egco427-vue-hw.herokuapp.com/contacts/get/'+this.Contact._id)
          .then((response)=>{
              console.log(response.data)
              this.Contact = response.data // .data is default prop of response

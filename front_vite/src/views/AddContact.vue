@@ -92,7 +92,7 @@ export default {
             email: this.Contact.email,
             image: this.Contact.image
           }
-          axios.post('http://localhost:5000/contacts/add/',newContact)
+          axios.post('https://egco427-vue-hw.herokuapp.com/contacts/add/',newContact)
             .then((response)=>{
                 console.log(response.data)
                 this.status = 'Add contact successfully'

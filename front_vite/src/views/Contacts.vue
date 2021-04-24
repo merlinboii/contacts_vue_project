@@ -98,7 +98,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://localhost:5000/contacts/getmany')
+    axios.get('https://egco427-vue-hw.herokuapp.com/contacts/getmany')
          .then((response)=>{
              console.log(response.data)
              this.Contacts = response.data // .data is default prop of response
@@ -120,7 +120,7 @@ export default {
          
       },
       delContact(contact_fname){
-           axios.delete('http://localhost:5000/contacts/delete/'+contact_fname)
+           axios.delete('https://egco427-vue-hw.herokuapp.com/contacts/delete/'+contact_fname)
             .then(()=>{
                 console.log('Delete firstname: '+contact_fname)
              })
