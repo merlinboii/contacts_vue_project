@@ -3,9 +3,9 @@
       <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
       <!-- <HelloWorld msg="Hello Vue 3.0 + Vite" /> -->
       <!-- <h1>EGCO427</h1> -->
-      <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#">
-      <img src="./assets/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      <nav class="navbar navbar-light" style="background-color:#564C2C;">
+      <a class="navbar-brand" href="#" style="color:#FFFFFF;">
+      <img src="../img/icons8-happy-96@2x.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Contact
        </a>
       </nav>
