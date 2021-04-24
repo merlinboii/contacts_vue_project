@@ -14,7 +14,7 @@
       </p>
       <div class="well">
         <div class="form-group" >
-          <label class="pull-left">Contact ID</label><label class="pull-left" style="color:red;">*</label>
+          <label class="pull-left">Contact ID</label>
           <input type="text" class="form-control" placeholder="Contact ID" v-model="Contact.contact_id" readonly>
         </div>
         <div class="form-group" >
