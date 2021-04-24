@@ -1,57 +1,63 @@
 <template>
-    <div class="container">
-        <h4 style=" margin-top: 20px;  margin-bottom: 10px;">List of Users</h4>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for..." v-model="search">
-                <span class="input-group-btn">
-                  &nbsp;&nbsp;<button class="btn btn-primary" type="button">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    Search
-                  </button>
-                </span>
-              </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
-          </div><!-- /.row -->
+  <div class="container">
+    <div class="container" >
+      <div class="row ">
+        <div class="col" >
+          <div class="input-group" style="width:100%; transition: 0.3s; border-radius: 10px; margin :5% 0% 1% 0% ">
+            <input type="text" class="form-control" placeholder="Search ..." v-model="search">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              &nbsp;&nbsp;<button class="btn" type="button" style="background-color:#E2D7B9;">
+                <i class="fa fa-search" style="color:#3B3B3B;"></i>
+                Search
+              </button>
+              <router-link to="/addcontact">
+                <button class="btn" type="button" style="background-color:#777D63; color:#FFFFFF;">+ Add</button>
+              </router-link>
+            </div>
+            <span class="input-group-btn">
+
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+    </div>
+
+    <br>
+    <table class="table table-stripped table-borderes">
+      <thead>
+      </thead>
+      <tbody>
+        <div class="row card-columns center">
+          <div v-for="user_alias in filterContacts" v-bind:key="user_alias.firstname || user_alias.lastname">
+            <div class="col-mt3"
+              style="width: 16rem; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s; border-radius: 10px; margin :10% 0% 0% 10% ">
+              <img class="card-img-top" :src="user_alias.image" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{ user_alias.firstname }} {{ user_alias.middlename }} {{ user_alias.lastname }}
+                </h5>
+                <p class="card-text">Email : {{ user_alias.email }}</p>
+                <p class="card-text">Mobile : {{ user_alias.mobile }} </p>
+                <div class="card-footer bg-transparent" style="height: 3rem;">
+                  <router-link to="/contacts">
+                    <button class="btn float-left" style="background-color:#777D63; color:#FFFFFF; " data-toggle="modal"
+                      data-target=".bd-example-modal-sm" @click="DELETE(user_alias.firstname)"><i
+                        class="fa fa-trash"></i></button>
+                  </router-link>
+                  <router-link :to="{ path:'updatecontact', name: 'UpdateContact' , params:{userId: user_alias._id} }">
+                    <button class="btn float-right" style="background-color:#E2D7B9; color:#3B3B3B; "><i
+                        class="fa fa-edit" style="color:#3B3B3B;"></i> Edit</button>
+                  </router-link>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
-        <br>
-        <table class="table table-stripped table-borderes">
-            <thead>
-                <tr>
-                <th class="center">First Name</th>
-                <th class="center">Middle Name</th>
-                <th class="center">Last Name</th>
-                <th class="center">Mobile</th>
-                <th class="center">Email</th>
-                <th class="center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="user_alias in filterContacts" v-bind:key="user_alias.firstname || user_alias.lastname" >
-                <!-- <tr v-for="user_alias in Users" v-bind:key="user_alias.id"> -->
-                    <td class="text-left">{{ user_alias.firstname }}</td>
-                    <td class="text-left">{{ user_alias.middlename }}</td>
-                    <td class="text-left">{{ user_alias.lastname }}</td>
-                    <td class="text-left">{{ user_alias.mobile }}</td>
-                    <td class="text-left">{{ user_alias.email }}</td>
-                    <td class="text-left">
-                        <router-link :to="{ path:'updatecontact', name: 'UpdateContact' , params:{userId: user_alias._id} }">
-                          <button class="btn btn-xs btn-warning">Edit</button>&nbsp;
-                        </router-link>   
-                         <router-link to="/contacts">
-                          <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm" @click="DELETE(user_alias.firstname)"><span class="glyphicon glyphicon-trash">Delete</span></button>
-                        </router-link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <router-link to="/addcontact">
-            <button class="btn btn-large btn-block btn-success full-width">Add Contact</button>
-        </router-link>
-        <br>
-    <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      </tbody>
+    </table>
+    <br>
+    <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -61,20 +67,20 @@
             </button>
           </div>
           <div class="modal-body">
-            Are you sure you want to delete this contact 
+            Are you sure you want to delete this contact
             <br>
-            <p >First name : {{ fname }}</p>
+            <p>First name : {{ fname }}</p>
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <router-link to="/contacts">
-                 <button type="button" class="btn btn-danger" @click="delContact(fname)">Delete</button>
-              </router-link>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <router-link to="/contacts">
+              <button type="button" class="btn btn-danger" @click="delContact(fname)">Delete</button>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -104,7 +110,7 @@ export default {
   computed : {
       filterContacts: function(){
           return this.Contacts.filter((contact)=>{
-              return contact.firstname.match(this.search) || contact.lastname.match(this.search)
+              return contact.firstname.toLowerCase().match(this.search.toLowerCase()) || contact.lastname.toLowerCase().match(this.search.toLowerCase())
           })
       }
   },
