@@ -6,7 +6,6 @@ import Contacts from "../views/Contacts.vue"
 import AddContact from "../views/AddContact.vue"
 import UpdateContact from "../views/UpdateContact.vue"
 import Login from "../views/Login.vue"
-// import SignUp from "../views/SignUp.vue"
 
 const routerHistory = createWebHistory()
 
