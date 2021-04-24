@@ -2,7 +2,7 @@ const { Router } = require('express')
 var express = require('express')
 var app = express()
 
-port = process.env.PORT || 5000
+port = process.env.PORT || 80
 var mongoose = require('mongoose')
 
 Contact = require('./api/model/contactListModel')
