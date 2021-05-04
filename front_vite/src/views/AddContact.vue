@@ -57,9 +57,9 @@
               <input type="text" class="form-control" placeholder="Image Url" v-model="Contact.image">
             </div>
           </div>
+          <router-link to="/contacts">
           <button type="submit" class="btn btn-large btn-block full-width"
             style="margin-bottom: 10px; background-color:#E2D7B9;">Submit</button>
-          <router-link to="/contacts">
             <a href="#" class="card-link" style="color:#777D63;">Back to Main Page</a>
           </router-link>
         </form>
