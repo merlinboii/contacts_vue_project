@@ -5,7 +5,7 @@
       <!-- <h1>EGCO427</h1> -->
       <nav class="navbar navbar-light" style="background-color:#564C2C;">
       <a class="navbar-brand" href="/contacts" style="color:#FFFFFF;">
-      <img src="../img/icons8-happy-96@2x.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      <img src="./assets/icons8-happy-96@2x.png" width="30" height="30" class="d-inline-block align-top" alt="">
         Contact
        </a>
       </nav>
