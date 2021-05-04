@@ -29,38 +29,57 @@
               <label class="pull-left">Last Name </label><label class="pull-left" style="color:red;">*</label>
               <input type="text" class="form-control" placeholder="Last Name" v-model="Contact.lastname" required>
             </div>
-            <div class="form-group" >
+            <div class="form-group">
               <label class="pull-left">Gender </label><label class="pull-left" style="color:red;">*</label>
               <div class="form-check pull-left" style="margin-left:2rem">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="F" v-model="Contact.gender" >
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="F"
+                  v-model="Contact.gender" required>
                 <label class="form-check-label" for="inlineRadio1">Female</label>
               </div>
               <br>
               <div class="form-check pull-left" style="margin-left:2rem">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="M" v-model="Contact.gender">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="M"
+                  v-model="Contact.gender">
                 <label class="form-check-label" for="inlineRadio2">Male</label><br>
               </div>
-              <!-- <input type="text" class="form-control" placeholder="Gender" v-model="Contact.gender" required> -->
             </div>
             <br>
             <div class="form-group">
               <label class="pull-left">Mobile No </label><label class="pull-left" style="color:red;">*</label>
               <input type="text" class="form-control" placeholder="Mobile No" v-model="Contact.mobile" required>
-
             </div>
             <div class="form-group">
               <label class="pull-left">Email </label><label class="pull-left" style="color:red;">*</label>
               <input type="text" class="form-control" placeholder="Email" v-model="Contact.email" required>
             </div>
             <div class="form-group">
-              <label class="pull-left">Image URL </label>
-              <input type="text" class="form-control" placeholder="Image Url" v-model="Contact.image">
+              <label class="pull-left">Image</label><br><br>
+              <div class="row">
+                <div class="card" @click="imageMethod('img1')"
+                  style="width: 7rem; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s; border-radius: 10px; margin :0 0 0 2rem ">
+                  <img src="../assets/1.png" class="card-img" alt="avarta1">
+                </div>
+                <div class="card" @click="imageMethod('img2')"
+                  style="width: 7rem; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s; border-radius: 10px; margin :0 0 0 2rem ">
+                  <img src="../assets/2@2x.png" class="card-img" alt="avarta2">
+                </div>
+                <div class="card" @click="imageMethod('img3')"
+                  style="width: 7rem; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s; border-radius: 10px; margin :0 0 0 2rem ">
+                  <img src="../assets/3@2x.png" class="card-img" alt="avarta3">
+                </div>
+                <div class="card" @click="imageMethod('img4')"
+                  style="width: 7rem; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s; border-radius: 10px; margin :0 0 0 2rem ">
+                  <img src="../assets/4@2x.png" class="card-img" alt="avarta4">
+                </div>
+              </div>
+              <br>
+              <input type="text" class="form-control" placeholder="select or input image url" v-model="Contact.image"
+                required>
             </div>
           </div>
-          <router-link to="/contacts">
+
           <button type="submit" class="btn btn-large btn-block full-width"
             style="margin-bottom: 10px; background-color:#E2D7B9;">Submit</button>
-            </router-link>
           <router-link to="/contacts">
             <a href="#" class="card-link" style="color:#777D63;">Back to Main Page</a>
           </router-link>
@@ -90,7 +109,8 @@ export default {
             email :  '' ,
             image : '' 
         },
-        errors:[]
+        errors:[],
+        status
     }
   },
   methods : {
@@ -110,6 +130,7 @@ export default {
                 console.log(response.data)
                 this.status = 'Add contact successfully'
                 alert(this.status)
+                this.$router.replace('/contacts')
              })
             .catch((error)=>{
                 console.log(error) // should have table name of msg Error
@@ -120,7 +141,6 @@ export default {
       if (!this.validEmail(this.Contact.email)) {
         this.errors.push('Valid email required.');
       }
-
       if (!this.validMobile(this.Contact.mobile)) {
         this.errors.push('Valid mobile required.');
       }
@@ -141,7 +161,34 @@ export default {
     validMobile(mobile){
       var re = /[0-9]/;
       return re.test(mobile);
+    },
+    imageMethod(imgNum){
+      switch(imgNum){
+        case 'img1' : 
+          this.Contact.image = 'https://cdn.discordapp.com/attachments/701016093979967562/835417656198168577/1.png'
+          break;
+        case 'img2' : 
+          this.Contact.image = 'https://cdn.discordapp.com/attachments/701016093979967562/835417666511962122/22x.png'
+          break;
+        case 'img3' : 
+          this.Contact.image = 'https://cdn.discordapp.com/attachments/701016093979967562/835417674074161162/32x.png'
+          break;
+        case 'img4' : 
+          this.Contact.image = 'https://cdn.discordapp.com/attachments/701016093979967562/835417841477746698/52x.png'
+          break;
+        default : this.Contact.image=''
+      }
+      
     }
   }
 }
 </script>
+<style >
+.card-img:hover {
+  opacity: 0.7;
+}
+
+.card-img {
+  opacity: 1.0;
+}
+</style>
