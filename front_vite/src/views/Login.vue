@@ -1,22 +1,20 @@
 <template>
   <div class="container">
-    <div class="card"
-      style="">
+    <div class="card">
       <div class="card-header" style="background-color:#777D63;color:white;">
         Log in
       </div>
-      <div class="card-body">
-        <div class="row" >
-          <div>
+      <div class="card-body" >
+        <div style="margin: 5% 5% 0% 5%">
           <label class="pull-left">User Account</label>
           <input type="username" v-model="formData.username" class="form-control" placeholder="username" />
-          <p class="text-left" v-if="formData.username.length == 0" style="color:red">*please enter username</p>
-          <label class="pull-left" style="margin-top:5px;">Password</label>
+          <p  class="text-left" v-if="formData.username.length == 0" style="color:red">*please enter Username</p>
+          <label class="pull-left" style="margin-top:10px;">Password</label>
           <input type="password" v-model="formData.password" class="form-control" placeholder="password"
             @keyup.enter="logIn" />
-          <p class="text-left" v-if="formData.password.length == 0" style="color:red">*please enter username</p>
-          </div>
-          <button id="loginButton" class="btn  w-50" @click="logIn" style="background-color:#E2D7B9; margin-bottom: 15%; margin-top: 10%; color:black;">Log In</button>
+          <p class="text-left" v-if="formData.password.length == 0" style="color:red">*please enter Password</p>
+          <button id="loginButton" class="btn  w-100" @click="logIn" style="background-color:#E2D7B9; margin-bottom: 5%; margin-top: 2%; color:black;">Log In</button>
+          
       </div>
       </div>
       
@@ -54,34 +52,28 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (min-width: 601px) {
-.card {
-    margin: 10% 30% 0% 30%;
+@media screen and (max-width: 992px) {
+  .card {
+    width: 300px;
+    margin:0 auto;
+    margin-top: 10%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s; 
     border-radius: 10px;
   }
-  .row{
-    margin: 2rem 0rem 0rem 3rem
-  }
-  #loginButton{
-    background-color:#E2D7B9; 
-    margin-bottom: 15%; 
-    margin-bottom: 15%;
-    color:black;
-  }
 }
-@media screen and (max-width: 600px) {
-.card {
-    margin: 10% 10% 0% 10%;
+@media screen and (min-width: 993px) {
+  .card {
+    width: 500px;
+    margin:0 auto;
+    margin-top: 10%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s; 
     border-radius: 10px;
   }
-  .row{
-    margin: 2rem 2rem 0rem 2rem
-  }
 }
+
+
 h1, h2 {
   font-weight: normal;
 }
