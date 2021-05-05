@@ -6,9 +6,9 @@
           <div class="input-group" style="width:100%; transition: 0.3s; border-radius: 10px; margin :5% 0% 1% 0% ">
             <input type="text" class="form-control" placeholder="Search ..." v-model="search">
             <div class="btn-group" role="group" aria-label="Basic example">
-              &nbsp;&nbsp;<button class="btn" type="button" style="background-color:#E2D7B9;">
-                <i class="fa fa-search" style="color:#3B3B3B;"></i>
-                Search
+              &nbsp;&nbsp;<button class="btn" type="button" style="background-color:#E2D7B9;" @click="reload()">
+                <i class="fa fa-refresh" style="color:#3B3B3B;"></i>
+                
               </button>
               <router-link to="/addcontact">
                 <button class="btn" type="button" style="background-color:#777D63; color:#FFFFFF;">+ Add</button>
@@ -33,9 +33,9 @@
               style="width: 16rem; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s; border-radius: 10px; margin :10% 0% 0% 10% ">
               <img class="card-img-top" :src="user_alias.image" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">{{ user_alias.firstname }} {{ user_alias.middlename }} {{ user_alias.lastname }}
+                <h5 class="card-title" >{{ user_alias.firstname }} {{ user_alias.middlename }} {{ user_alias.lastname }}
                 </h5>
-                <p class="card-text">Email : {{ user_alias.email }}</p>
+                <p class="card-text">Email :<br>{{ user_alias.email }}</p>
                 <p class="card-text">Mobile : {{ user_alias.mobile }} </p>
                 <div class="card-footer bg-transparent" style="height: 3rem;">
                   <router-link to="/contacts">
@@ -60,7 +60,7 @@
       aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header" style="background-color:#777D63;color:white;">
             <h1 class="modal-title" id="exampleModalLabel">Delete contact</h1>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -71,10 +71,10 @@
             <br>
             <p>First name : {{ fname }}</p>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <div class="modal-footer" >
+            <button type="button" class="btn " data-dismiss="modal" style="background-color:#E2D7B9;">Close</button>
             <router-link to="/contacts">
-              <button type="button" class="btn btn-danger" @click="delContact(fname)">Delete</button>
+              <button type="button" class="btn" @click="delContact(fname)" style="background-color:#777D63;color:white">Delete</button>
             </router-link>
           </div>
         </div>
@@ -122,13 +122,18 @@ export default {
       delContact(contact_fname){
            axios.delete('https://egco427-vue-hw-api.herokuapp.com/contacts/delete/'+contact_fname)
             .then(()=>{
-                console.log('Delete firstname: '+contact_fname)
+                console.log('Delete firstname: '+contact_fname+'successfully')
+                window.location.reload()
              })
             .catch((error)=>{
                 console.log(error) // should have table name of msg Error
             })
-            window.location.reload() // reload data in table
+             // reload data in table
+      },
+      reload(){
+        window.location.reload()
       }
   }
 }
 </script>
+
