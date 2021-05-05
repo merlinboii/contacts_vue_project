@@ -56,7 +56,7 @@ export default {
   .card {
     width: 300px;
     margin:0 auto;
-    margin-top: 20%;
+    margin-top: 100px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s; 
     border-radius: 10px;
@@ -66,7 +66,7 @@ export default {
   .card {
     width: 500px;
     margin:0 auto;
-    margin-top: 20%;
+    margin-top: 100px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s; 
     border-radius: 10px;
