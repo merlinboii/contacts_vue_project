@@ -13,7 +13,7 @@
           <input type="password" v-model="formData.password" class="form-control" placeholder="password"
             @keyup.enter="logIn" />
           <p class="text-left" v-if="formData.password.length == 0" style="color:red">*please enter Password</p>
-          <button id="loginButton" class="btn  w-100" @click="logIn" style="background-color:#E2D7B9; margin-bottom: 5%; margin-top: 2%; color:black;">Log In</button>
+          <button id="loginButton" class="btn  w-100" @click="logIn" style="background-color:#E2D7B9; margin-bottom: 5%; margin-top: 5%; color:black;">Log In</button>
           
       </div>
       </div>
