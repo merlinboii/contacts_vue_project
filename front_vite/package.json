@@ -2,7 +2,7 @@
   "name": "vite_crud",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 8080",
     "build": "vite build"
   },
   "dependencies": {
